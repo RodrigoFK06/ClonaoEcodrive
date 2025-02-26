@@ -17,7 +17,7 @@ export default function BenefitCard({ titulo, descripcion, sede, dias, imagen }:
         <FlipCard 
           title={titulo} 
           description={`${descripcion}\n${sede}\n${dias}`} 
-          imageUrl={imagen || "/default-image.jpg"} // Usa una imagen por defecto si está vacía
+          imageUrl={imagen?"http://localhost:8080/"+imagen: "/default-image.jpg"} // Usa una imagen por defecto si está vacía
           size="small" 
         />
       </div>

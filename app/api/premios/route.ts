@@ -1,22 +1,33 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    // Asegúrate de que la URL es la correcta y accesible
+    console.log("📡 Llamando a la API de CodeIgniter...");
+
     const res = await fetch('http://localhost:8080/admin/premios', {
-      method: 'GET',
+      cache: "no-store", // 🔥 Evita el almacenamiento en caché
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        Pragma: "no-cache",
+        Expires: "0",
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
     });
 
-    if (!res.ok) {
-      throw new Error(`Error en la API: ${res.statusText}`);
-    }
-
     const data = await res.json();
-    return NextResponse.json(data);
+
+    console.log("✅ Datos recibidos en route.ts:", data);
+
+    return NextResponse.json(data, {
+      headers: {
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        Pragma: "no-cache",
+        Expires: "0",
+      },
+    });
   } catch (error) {
+    console.error("❌ Error en route.ts:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Error desconocido" },
       { status: 500 }

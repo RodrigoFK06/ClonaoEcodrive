@@ -8,6 +8,8 @@ export async function fetchBenefits() {
         "Cache-Control": "no-cache, no-store, must-revalidate",
         Pragma: "no-cache",
         Expires: "0",
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     });
 
@@ -19,7 +21,7 @@ export async function fetchBenefits() {
       throw new Error(data.error || "Error al obtener beneficios");
     }
 
-    return Array.isArray(data.beneficios) ? data.beneficios : [];
+    return Array.isArray(data) ? data : [];
   } catch (error) {
     console.error("❌ Error en fetchBenefits:", error);
     return [];

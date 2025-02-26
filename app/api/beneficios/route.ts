@@ -10,6 +10,8 @@ export async function GET() {
         "Cache-Control": "no-cache, no-store, must-revalidate",
         Pragma: "no-cache",
         Expires: "0",
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
     });
 
