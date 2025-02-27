@@ -59,9 +59,9 @@ export function Stats() {
     <section className="py-20 bg-[#FDF2E9]">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          <StatCounter end={50000} label="Usuarios activos" suffix="+" />
-          <StatCounter end={100000} label="Viajes completados" suffix="+" />
-          <StatCounter end={95} label="Satisfacción" suffix="%" />
+          <StatCounter end={1000} label="Usuarios activos" suffix="+" />
+          <StatCounter end={10000} label="Viajes completados" suffix="+" />
+          <StatCounter end={90} label="Satisfacción" suffix="%" />
           <StatCounter end={24} label="Soporte" suffix="/7" />
         </div>
       </div>

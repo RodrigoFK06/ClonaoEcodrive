@@ -7,7 +7,7 @@ import TypingAnimation from "../ui/typing-animation"
 import { useEffect, useState } from "react"
 import type { MainPrize } from "@/types/main-prize"
 import { fetchMainPrize } from "@/lib/api-main-prize"
-import Header from "../ui/header"
+import Header from "../ui/UniversalHeader"
 
 export default function MainSection() {
   const [mainPrize, setMainPrize] = useState<MainPrize>({

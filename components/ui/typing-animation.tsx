@@ -1,34 +1,40 @@
-"use client"
+import { motion, useAnimation } from "framer-motion";
+import { useEffect, useState } from "react";
 
-import { motion, useAnimation } from "framer-motion"
-import { useEffect } from "react"
-
-export default function TypingAnimation({ text }: { text: string }) {
-  const controls = useAnimation()
+const TypingAnimation = ({ text }: { text: string }) => {
+  const controls = useAnimation();
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    const animate = async () => {
-      await controls.start({
-        opacity: 1,
-        transition: { duration: 0.5 },
-      })
+    setIsMounted(true);
+  }, []);
 
+  useEffect(() => {
+    if (!isMounted) return; 
+
+    const animateText = async () => {
       for (let i = 0; i <= text.length; i++) {
-        await controls.start({
-          width: `${(i * 100) / text.length}%`,
-          transition: { duration: 0.05 },
-        })
+        await requestAnimationFrame(() =>
+          controls.start({
+            width: `${(i * 100) / text.length}%`,
+            transition: { duration: 0.05 },
+          })
+        );
       }
-    }
+    };
 
-    animate()
-  }, [controls, text])
+    animateText();
+  }, [isMounted, controls, text]); 
 
   return (
-    <div className="relative">
-      <motion.div initial={{ opacity: 0, width: "0%" }} animate={controls} className="" />
-      <span>{text}</span>
-    </div>
-  )
-}
+    <motion.div
+      initial={{ width: 0 }}
+      animate={controls}
+      className="overflow-hidden whitespace-nowrap text-white"
+    >
+      {text}
+    </motion.div>
+  );
+};
 
+export default TypingAnimation;

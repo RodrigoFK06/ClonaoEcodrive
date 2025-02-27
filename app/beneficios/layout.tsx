@@ -1,6 +1,7 @@
 import type React from "react"
-import Header from "@/components/ui/header"
+import Header from "@/components/ui/UniversalHeader"
 import Footer from "@/components/ui/footer"
+import UniversalHeader from "@/components/ui/UniversalHeader"
 
 export default function BeneficiosLayout({
   children,
@@ -9,7 +10,7 @@ export default function BeneficiosLayout({
 }) {
   return (
     <div className="min-h-screen flex flex-col">
-      <Header />
+      <UniversalHeader />
       {children}
       <Footer />
     </div>

@@ -7,8 +7,8 @@ export default function Footer() {
     <footer className="bg-black text-white py-6">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/placeholder.svg" alt="EcoDrive+" width={40} height={40} className="rounded" />
-          <span className="text-xl font-bold text-[#E67E22]">ECODRIVE+</span>
+          <Image src="/Logo.png" alt="EcoDrive+" width={200} height={40} className="rounded" />
+          
         </Link>
 
         <div className="flex gap-6">
