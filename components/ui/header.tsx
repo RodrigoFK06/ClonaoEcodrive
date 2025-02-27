@@ -19,7 +19,7 @@ export default function Header() {
               height={200}
               className="rounded"
             />
-            <span className="text-xl font-bold text-[#E67E22]"></span>
+            <span className="text-xl font-black text-[#E67E22]"></span>
           </Link>
 
         <nav>

@@ -9,7 +9,7 @@ export default function WinnersPage() {
     <main className="min-h-screen">
       <WinnersHero />
       <div className="bg-[#FFF5E9] pt-16">
-        <div className="container mx-auto px-4 py-12">
+        <div className="font-black container mx-auto px-4 py-12">
           <MainPrizeWinner />
           <WeeklyCalendar />
           <WinnersGrid

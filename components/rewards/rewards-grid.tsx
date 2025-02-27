@@ -1,15 +1,13 @@
 "use client"
-import type { Reward } from "@/types/rewards"
-import RewardCard from "./reward-card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import SkeletonLoader from "../ui/skeleton-loader"
 import { motion } from "framer-motion"
+import RewardCard from "./reward-card"
 
 interface RewardsGridProps {
   title: string
-  rewards: Reward[]
+  rewards: { id: string; title: string; days: string; image: string }[]
   isLoading: boolean
   error?: string
+  message?: string
 }
 
 export default function RewardsGrid({ 
@@ -19,16 +17,15 @@ export default function RewardsGrid({
   error 
 }: RewardsGridProps) {
   return (
-    <section className="py-8 container mx-auto px-4 font-nunito overflow-hidden">
+    <section className="py-12 container mx-auto px-4 font-nunito">
       <motion.div
-        className="bg-[#E67E22] rounded-[2rem] p-6"
+        className="bg-[#E67E22] rounded-[2rem] p-8 shadow-2xl"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Título con animación independiente */}
         <motion.h2
-          className="text-3xl font-black text-black text-center mb-6"
+          className="text-3xl md:text-4xl font-black text-black text-center mb-10"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -36,46 +33,23 @@ export default function RewardsGrid({
           {title}
         </motion.h2>
 
-        {/* Contenido condicional */}
-        {isLoading && <SkeletonLoader />}
-        
-        {error && (
-          <Alert variant="destructive" className="mt-4">
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-
-        {!isLoading && !error && (
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.1,
-                  delayChildren: 0.3
-                }
-              }
-            }}
-          >
-            {rewards.map((reward, index) => (
-              <motion.div
-                key={reward.id}
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0 }
-                }}
-                transition={{ duration: 0.5 }}
-                className="w-full"
-              >
-                <RewardCard {...reward} />
-              </motion.div>
-            ))}
-          </motion.div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {rewards.map((reward) => (
+            <motion.div
+              key={reward.id}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="perspective"
+            >
+              <RewardCard
+                title={reward.title}
+                days={reward.days}
+                imageSrc={reward.image}
+              />
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
     </section>
   )

@@ -34,6 +34,6 @@ export default function DriverRewards() {
     return <LoadingMessage />
   }
 
-  return <RewardsGrid title="PREMIOS CONDUCTORES" rewards={rewards} message={message} />
+  return <RewardsGrid title="PREMIOS CONDUCTORES" rewards={rewards} message={message} isLoading={isLoading} />
 }
 

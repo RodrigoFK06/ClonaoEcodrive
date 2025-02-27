@@ -2,7 +2,8 @@ export interface Reward {
   id: string
   title: string
   days: string
-  imageSrc: string
+  image: string
+  
 }
 
 export interface ApiResponse {

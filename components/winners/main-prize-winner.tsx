@@ -7,7 +7,7 @@ export default function MainPrizeWinner() {
   return (
     <section className="mb-12">
       <motion.h2
-        className="text-4xl font-bold text-[#E67E22] text-center mb-8"
+        className="text-4xl font-black text-[#E67E22] text-center mb-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -30,7 +30,7 @@ export default function MainPrizeWinner() {
         </motion.div>
         <div className="md:w-1/2">
           <motion.h3
-            className="text-3xl font-bold text-[#E67E22] mb-4"
+            className="text-3xl font-black text-[#E67E22] mb-4"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
