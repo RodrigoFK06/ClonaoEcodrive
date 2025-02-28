@@ -15,14 +15,17 @@ export default function WinnersGrid({ title, tipo }: { title: string; tipo: stri
     const loadWinners = async () => {
       try {
         const response = await fetchWinners();
-  
-        // 🔥 Filtramos correctamente los ganadores
+
+        // 🔥 Filtrar solo los ganadores correctos por tipo (conductor/pasajero)
         const filteredWinners = response.winnersList
-          .filter((winner) => winner.es_ganador == "1") // Corregimos el tipo
-          .filter((winner) => winner.sorteo_titulo.toLowerCase().includes(tipo.toLowerCase()));
-  
-        console.log("🎯 Ganadores filtrados:", filteredWinners);
-  
+          .filter((winner) => winner.es_ganador === "1")
+          .filter((winner) => {
+            console.log(`🧐 Comparando: ${winner.tipo} === ${tipo.toLowerCase().trim()}`);
+            return winner.tipo === tipo.toLowerCase().trim();
+          });
+
+        console.log(`✅ Ganadores filtrados para tipo "${tipo}":`, filteredWinners);
+
         setWinners(filteredWinners);
       } catch (e) {
         setError("Error al cargar los ganadores.");
@@ -30,10 +33,9 @@ export default function WinnersGrid({ title, tipo }: { title: string; tipo: stri
         setIsLoading(false);
       }
     };
-  
+
     loadWinners();
   }, [tipo]);
-  
 
   if (isLoading) return <p className="text-center">Cargando...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;
