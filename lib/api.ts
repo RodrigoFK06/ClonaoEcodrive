@@ -45,3 +45,17 @@ export async function fetchPassengerRewards() {
     };
   }
 }
+export async function fetchWithAuth(url: string, options: { headers?: HeadersInit } = {}) {
+  const response = await fetch(url, {
+    ...options,
+    credentials: "include", // 🔥 Esto permite enviar cookies de sesión desde el backend
+    headers: {
+      ...options.headers,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) throw new Error("Error en la petición");
+
+  return response.json();
+}

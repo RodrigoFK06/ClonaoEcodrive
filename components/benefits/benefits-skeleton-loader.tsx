@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 
 export default function BenefitsSkeletonLoader() {
   return (
-    <div className="grid md:grid-cols-2 gap-12">
+    <div className="grid md:grid-cols-2 gap-12 items-center justify-center">
       {[...Array(4)].map((_, i) => (
         <motion.div
           key={i}

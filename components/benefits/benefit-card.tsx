@@ -9,19 +9,17 @@ interface BenefitCardProps {
 }
 
 export default function BenefitCard({ titulo, descripcion, sede, dias, imagen }: BenefitCardProps) {
-  console.log("🟢 Datos en BenefitCard:", { titulo, descripcion, sede, dias, imagen });
-
   return (
-    <div className="flex items-start gap-8">
+    <div className="flex items-center justify-center gap-8 text-left min-h-[200px]"> 
       <div className="w-48 h-48 flex-shrink-0">
         <FlipCard 
           title={titulo} 
           description={`${descripcion}\n${sede}\n${dias}`} 
-          imageUrl={imagen?"http://localhost:8080/"+imagen: "/default-image.jpg"} // Usa una imagen por defecto si está vacía
+          imageUrl={imagen ? `http://localhost:8080/${imagen}` : "/default-image.jpg"} 
           size="small" 
         />
       </div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 flex-1">
         <h3 className="text-3xl font-bold text-[#E67E22]">{titulo}</h3>
         <ul className="space-y-2 text-black">
           <li className="flex items-start">
@@ -41,3 +39,4 @@ export default function BenefitCard({ titulo, descripcion, sede, dias, imagen }:
     </div>
   );
 }
+
