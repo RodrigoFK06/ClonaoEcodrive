@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    console.log("📡 Llamando a la API de CodeIgniter...");
+    console.log("📡 Llamando a la API de premios en CodeIgniter...");
 
-    const res = await fetch('http://localhost:8080/admin/premios', {
-      cache: "no-store", // 🔥 Evita el almacenamiento en caché
+    const res = await fetch("http://localhost:8080/admin/premios", {
+      cache: "no-store",
       headers: {
         "Cache-Control": "no-cache, no-store, must-revalidate",
         Pragma: "no-cache",
@@ -15,9 +15,13 @@ export async function GET() {
       },
     });
 
+    if (!res.ok) {
+      throw new Error(`Error en la API de premios: ${res.status} - ${res.statusText}`);
+    }
+
     const data = await res.json();
 
-    console.log("✅ Datos recibidos en route.ts:", data);
+    console.log("✅ Datos recibidos en route.ts (premios):", data);
 
     return NextResponse.json(data, {
       headers: {
@@ -27,7 +31,7 @@ export async function GET() {
       },
     });
   } catch (error) {
-    console.error("❌ Error en route.ts:", error);
+    console.error("❌ Error en route.ts de premios:", error);
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Error desconocido" },
       { status: 500 }

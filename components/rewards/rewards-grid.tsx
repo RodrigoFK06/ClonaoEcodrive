@@ -1,20 +1,26 @@
-"use client"
-import { motion } from "framer-motion"
-import RewardCard from "./reward-card"
+"use client";
+import { motion } from "framer-motion";
+import RewardCard from "./reward-card";
 
 interface RewardsGridProps {
-  title: string
-  rewards: { id: string; title: string; days: string; image: string }[]
-  isLoading: boolean
-  error?: string
-  message?: string
+  title: string;
+  rewards: { 
+    id: string; 
+    titulo: string;  // 👈 Ahora usamos `titulo`
+    dias: string;    // 👈 Ahora usamos `dias`
+    imagen: string;  // 👈 Ahora usamos `imagen`
+    descripcion: string; // 👈 Ahora agregamos `descripcion`
+  }[];
+  isLoading: boolean;
+  error?: string;
+  message?: string;
 }
 
-export default function RewardsGrid({ 
-  title, 
-  rewards, 
-  isLoading, 
-  error 
+export default function RewardsGrid({
+  title,
+  rewards,
+  isLoading,
+  error
 }: RewardsGridProps) {
   return (
     <section className="py-12 container mx-auto px-4 font-nunito">
@@ -43,14 +49,15 @@ export default function RewardsGrid({
               className="perspective"
             >
               <RewardCard
-                title={reward.title}
-                days={reward.days}
-                imageSrc={reward.image}
+                title={reward.titulo} // 👈 Ahora `titulo`
+                days={reward.dias} // 👈 Ahora `dias`
+                image={reward.imagen} // 👈 Ahora `imagen`
+                description={reward.descripcion} // 👈 Ahora `descripcion`
               />
             </motion.div>
           ))}
         </div>
       </motion.div>
     </section>
-  )
+  );
 }

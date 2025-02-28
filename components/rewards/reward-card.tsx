@@ -5,10 +5,11 @@ import Image from "next/image"
 interface RewardCardProps {
   title: string
   days: string
-  imageSrc: string
+  image: string
+  description: string // 👈 Ahora recibimos `descripcion`
 }
 
-export default function RewardCard({ title, days, imageSrc }: RewardCardProps) {
+export default function RewardCard({ title, days, image, description }: RewardCardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
 
   const x = useMotionValue(0)
@@ -40,7 +41,6 @@ export default function RewardCard({ title, days, imageSrc }: RewardCardProps) {
   }
 
   return (
-    // Add padding to the parent container to create space for the 3D effect
     <div className="p-2 w-full">
       <motion.div
         className="w-full aspect-square cursor-pointer transform-gpu"
@@ -65,7 +65,7 @@ export default function RewardCard({ title, days, imageSrc }: RewardCardProps) {
           animate={{ rotateY: isFlipped ? 180 : 0 }}
           transition={{ duration: 0.8, ease: [0.4, 0.0, 0.2, 1] }}
         >
-          {/* Cara frontal - Estilo como en la referencia del cliente */}
+          {/* Cara frontal */}
           <div
             className={`absolute w-full h-full bg-[#FFF5E9] rounded-3xl p-4 flex flex-col items-center ${
               isFlipped ? "pointer-events-none" : ""
@@ -75,7 +75,7 @@ export default function RewardCard({ title, days, imageSrc }: RewardCardProps) {
           >
             <div className="w-full h-3/4 relative rounded-3xl overflow-hidden mb-3">
               <Image 
-                src={imageSrc || "/placeholder.svg"} 
+                src={image || "/placeholder.svg"} 
                 alt={title} 
                 fill 
                 className="object-cover" 
@@ -88,7 +88,7 @@ export default function RewardCard({ title, days, imageSrc }: RewardCardProps) {
             </div>
           </div>
 
-          {/* Cara trasera */}
+          {/* Cara trasera - Mostramos `descripcion` */}
           <div
             className={`absolute w-full h-full bg-white rounded-3xl p-6 flex flex-col justify-center ${
               !isFlipped ? "pointer-events-none" : ""
@@ -102,7 +102,7 @@ export default function RewardCard({ title, days, imageSrc }: RewardCardProps) {
             <div>
               <h3 className="text-[#E67E22] text-xl font-bold mb-4">{title}</h3>
               <p className="text-gray-600 text-sm mb-6 whitespace-pre-line">
-                Este premio está disponible los días: {days}. ¡No pierdas la oportunidad de ganarlo!
+                {description} {/* 👈 Ahora mostramos `descripcion` en la parte trasera */}
               </p>
               <button
                 className="bg-[#E67E22] text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-[#E67E22]/90 transition-colors"
