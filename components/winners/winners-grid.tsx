@@ -47,21 +47,28 @@ export default function WinnersGrid({ title, tipo }: { title: string; tipo: stri
       </motion.h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {winners.length > 0 ? (
-          winners.map((winner) => (
-            <motion.div key={winner.id}>
-              <WinnerCard
-                name={winner.nombre_completo}
-                prize={winner.premio_titulo || "Premio Desconocido"}
-                image={winner.premio_imagen ? `http://localhost:8080/${winner.premio_imagen}` : "/placeholder.svg"}
-                date={`Fecha: ${winner.sorteo_fecha}`}
-              />
-            </motion.div>
-          ))
+          winners.map((winner) => {
+            const imageUrl = winner.premio_imagen || ""; // 📸 Guardar la URL antes de enviarla
+            console.log(`🏆 Imagen final para ${winner.nombre_completo}: ${imageUrl}`); // 🔎 Depurar
+
+            return (
+              <motion.div key={winner.id}>
+                <WinnerCard
+                  name={winner.nombre_completo}
+                  prize={winner.premio_titulo || "Premio Desconocido"}
+                  image={imageUrl}
+                  date={`Fecha: ${winner.sorteo_fecha}`}
+                />
+              </motion.div>
+            );
+          })
+
         ) : (
           <p className="text-center w-full col-span-3 text-gray-600">
             No hay ganadores registrados aún.
           </p>
         )}
+
       </div>
     </section>
   );
