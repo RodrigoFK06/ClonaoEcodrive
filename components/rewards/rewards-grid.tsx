@@ -6,10 +6,10 @@ interface RewardsGridProps {
   title: string;
   rewards: { 
     id: string; 
-    titulo: string;  // 👈 Ahora usamos `titulo`
-    dias: string;    // 👈 Ahora usamos `dias`
-    imagen: string;  // 👈 Ahora usamos `imagen`
-    descripcion: string; // 👈 Ahora agregamos `descripcion`
+    titulo: string;  
+    dia: string;   
+    imagen: string;  
+    descripcion: string; 
   }[];
   isLoading: boolean;
   error?: string;
@@ -49,10 +49,10 @@ export default function RewardsGrid({
               className="perspective"
             >
               <RewardCard
-                title={reward.titulo} // 👈 Ahora `titulo`
-                days={reward.dias} // 👈 Ahora `dias`
-                image={reward.imagen} // 👈 Ahora `imagen`
-                description={reward.descripcion} // 👈 Ahora `descripcion`
+                title={reward.titulo} 
+                days={reward.dia} 
+                image={reward.imagen}
+                description={reward.descripcion} 
               />
             </motion.div>
           ))}

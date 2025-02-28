@@ -20,7 +20,7 @@ export async function fetchDriverRewards(): Promise<Reward[]> {
       .map((reward) => ({
         id: reward.id,
         titulo: reward.titulo,  // 👈 Ahora usamos `titulo`
-        dias: reward.dias,      // 👈 Ahora usamos `dias`
+        dia: reward.dia,      // 👈 Ahora usamos `dias`
         imagen: reward.imagen ? `http://localhost:8080/${reward.imagen}` : "http://localhost:8080/default.jpg",
         descripcion: reward.descripcion, // 👈 Agregamos `descripcion`
         tipo: reward.tipo,
@@ -30,7 +30,7 @@ export async function fetchDriverRewards(): Promise<Reward[]> {
     return fallbackRewards.driverRewards.map((reward) => ({
       id: reward.id,
       titulo: reward.titulo,
-      dias: reward.dias,
+      dia: reward.dia,
       imagen: reward.imagen ? `http://localhost:8080/${reward.imagen}` : "http://localhost:8080/default.jpg",
       descripcion: reward.descripcion, // 👈 Agregamos `descripcion`
       tipo: reward.tipo,
@@ -56,7 +56,7 @@ export async function fetchPassengerRewards(): Promise<Reward[]> {
       .map((reward) => ({
         id: reward.id,
         titulo: reward.titulo,
-        dias: reward.dias,
+        dia: reward.dia,
         imagen: reward.imagen ? `http://localhost:8080/${reward.imagen}` : "http://localhost:8080/default.jpg",
         descripcion: reward.descripcion, // 👈 Agregamos `descripcion`
         tipo: reward.tipo,
@@ -66,17 +66,10 @@ export async function fetchPassengerRewards(): Promise<Reward[]> {
     return fallbackRewards.passengerRewards.map((reward) => ({
       id: reward.id,
       titulo: reward.titulo,
-      dias: reward.dias,
+      dia: reward.dia,
       imagen: reward.imagen ? `http://localhost:8080/${reward.imagen}` : "http://localhost:8080/default.jpg",
       descripcion: reward.descripcion, // 👈 Agregamos `descripcion`
       tipo: reward.tipo,
     }));
   }
 }
-
-
-
-
-
-
-

@@ -1,7 +1,7 @@
 export interface Reward {
   id: string;
   titulo: string;
-  dias: string;    
+  dia: string;    
   imagen: string; 
   descripcion: string; 
   tipo: string;
