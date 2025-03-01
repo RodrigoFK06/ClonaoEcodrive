@@ -5,7 +5,7 @@ export async function GET() {
   try {
     console.log("📡 Llamando a la API de CodeIgniter...");
 
-    const res = await fetch(`${API_BASE_URL}admin/beneficios`, {
+    const res = await fetch(`${API_BASE_URL}/admin/beneficios`, {
       cache: "no-store", // 🔥 Evita el almacenamiento en caché
       headers: {
         "Cache-Control": "no-cache, no-store, must-revalidate",

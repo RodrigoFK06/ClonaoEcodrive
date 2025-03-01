@@ -12,24 +12,28 @@ export default function Footer() {
         </Link>
 
         <div className="flex gap-6">
-          <Link href="#" className="hover:text-[#E67E22] transition-colors">
+          <Link href="https://www.facebook.com/profile.php?id=61566893626187" className="hover:text-[#E67E22] transition-colors " target="_blank" 
+  rel="noopener noreferrer">
             <Facebook className="w-6 h-6" />
           </Link>
-          <Link href="#" className="hover:text-[#E67E22] transition-colors">
+          <Link href="https://www.instagram.com/ecodriveplus" className="hover:text-[#E67E22] transition-colors" target="_blank" 
+  rel="noopener noreferrer">
             <Instagram className="w-6 h-6" />
           </Link>
-          <Link href="#" className="hover:text-[#E67E22] transition-colors">
+          <Link href="https://x.com/EcoDrivePlus" className="hover:text-[#E67E22] transition-colors" target="_blank" 
+  rel="noopener noreferrer">
             <Twitter className="w-6 h-6" />
           </Link>
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 items-center text-sm">
-          <Link href="#" className="hover:text-[#E67E22] transition-colors">
+          <Link href="https://drive.google.com/file/d/18VNFqNgXf0RE6e9RQHMc0wclC4pPlFji/view" className="hover:text-[#E67E22] transition-colors" target="_blank" 
+  rel="noopener noreferrer">
             Términos y Condiciones
           </Link>
           <span className="hidden md:inline">|</span>
-          <a href="mailto:soporte@ecodriveplus.com" className="hover:text-[#E67E22] transition-colors">
-            Soporte: soporte@ecodriveplus.com
+          <a href="mailto:lrodriguez@ecodriveplus.com" className="hover:text-[#E67E22] transition-colors">
+            Soporte: lrodriguez@ecodriveplus.com
           </a>
         </div>
       </div>
