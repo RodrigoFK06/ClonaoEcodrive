@@ -32,6 +32,11 @@ export default function Footer() {
             Términos y Condiciones
           </Link>
           <span className="hidden md:inline">|</span>
+          <Link href="https://docs.google.com/forms/d/e/1FAIpQLScauXMr3ZmmUu1K1Wloxq2yzT_CFURVnbKsr-7lkq0QI0SbFQ/viewform" className="hover:text-[#E67E22] transition-colors" target="_blank" 
+  rel="noopener noreferrer">
+            Libro de Reclamaciones
+          </Link>
+          <span className="hidden md:inline">|</span>
           <a href="mailto:lrodriguez@ecodriveplus.com" className="hover:text-[#E67E22] transition-colors">
             Soporte: lrodriguez@ecodriveplus.com
           </a>
