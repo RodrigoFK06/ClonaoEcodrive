@@ -6,7 +6,7 @@ import WinnerCard from "./winner-card";
 import { fetchWinners } from "@/lib/api-ganadores";
 import type { Winner } from "@/types/winners";
 
-export default function WinnersGrid({ title, tipo }: { title: string; tipo: string }) {
+export default function WinnersGrid({ title, tipo, selectedDate }: { title: string; tipo: string; selectedDate: string }) {
   const [winners, setWinners] = useState<Winner[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -22,7 +22,9 @@ export default function WinnersGrid({ title, tipo }: { title: string; tipo: stri
           .filter((winner) => {
             console.log(`🧐 Comparando: ${winner.tipo} === ${tipo.toLowerCase().trim()}`);
             return winner.tipo === tipo.toLowerCase().trim();
-          });
+          })
+          .filter((winner) => winner.sorteo_fecha === selectedDate);
+          
 
         console.log(`✅ Ganadores filtrados para tipo "${tipo}":`, filteredWinners);
 
@@ -35,7 +37,7 @@ export default function WinnersGrid({ title, tipo }: { title: string; tipo: stri
     };
 
     loadWinners();
-  }, [tipo]);
+  }, [tipo, selectedDate]);
 
   if (isLoading) return <p className="text-center">Cargando...</p>;
   if (error) return <p className="text-center text-red-500">{error}</p>;

@@ -14,20 +14,25 @@ const getMonthName = (date: Date): string => {
 
 const getMondayOfWeek = (date: Date): Date => {
   const day = date.getDay();
-  const diff = day === 0 ? -6 : 1 - day;
+  const diff = day === 0 ? -6 : 1 - day; // Si es domingo, ir al lunes anterior
   const monday = new Date(date);
   monday.setDate(date.getDate() + diff);
   return monday;
 };
 
-export default function WeeklyCalendar() {
+export default function WeeklyCalendar({ onDateSelect }: { onDateSelect: (date: string) => void }) {
   const today = new Date();
   const [weekStart, setWeekStart] = useState<Date>(getMondayOfWeek(today));
   const [selectedDate, setSelectedDate] = useState<Date>(today);
 
   useEffect(() => {
     setSelectedDate(today);
+    onDateSelect(formatDate(today)); // Enviar la fecha inicial al WinnersGrid
   }, []);
+
+  const formatDate = (date: Date) => {
+    return date.toISOString().split("T")[0]; // Formato YYYY-MM-DD
+  };
 
   const getWeekDays = (start: Date): Date[] => {
     return Array.from({ length: 7 }, (_, i) => {
@@ -40,19 +45,26 @@ export default function WeeklyCalendar() {
   const weekDays = getWeekDays(weekStart);
 
   const nextWeek = () => {
-    setWeekStart((prev) => {
-      const newStart = new Date(prev);
-      newStart.setDate(newStart.getDate() + 7);
-      return newStart;
-    });
+    const nextMonday = new Date(weekStart);
+    nextMonday.setDate(nextMonday.getDate() + 7);
+
+    if (nextMonday.getMonth() === today.getMonth()) {
+      setWeekStart(nextMonday);
+    }
   };
 
   const prevWeek = () => {
-    setWeekStart((prev) => {
-      const newStart = new Date(prev);
-      newStart.setDate(newStart.getDate() - 7);
-      return newStart;
-    });
+    const prevMonday = new Date(weekStart);
+    prevMonday.setDate(prevMonday.getDate() - 7);
+
+    if (prevMonday.getMonth() === today.getMonth()) {
+      setWeekStart(prevMonday);
+    }
+  };
+
+  const selectDate = (date: Date) => {
+    setSelectedDate(date);
+    onDateSelect(formatDate(date)); // Filtrar ganadores por esta fecha
   };
 
   return (
@@ -69,6 +81,7 @@ export default function WeeklyCalendar() {
       <div className="flex justify-between items-center mb-6">
         <motion.button
           onClick={prevWeek}
+          disabled={weekDays[0].getDate() <= 1} // Evita ir antes del mes
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           className="p-2 rounded-full bg-[#E67E22]/20 text-[#E67E22] hover:bg-[#E67E22]/30"
@@ -85,13 +98,12 @@ export default function WeeklyCalendar() {
                   className={`flex flex-col items-center p-4 rounded-lg cursor-pointer transition-all
                     ${selectedDate.toDateString() === day.toDateString()
                       ? 'bg-[#E67E22] text-white shadow-lg scale-105'
-                      : 'hover:bg-[#FDEBD0]'}
-                  `}
+                      : 'hover:bg-[#FDEBD0]'}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  onClick={() => setSelectedDate(day)}
+                  onClick={() => selectDate(day)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   layout
@@ -99,12 +111,12 @@ export default function WeeklyCalendar() {
                   <motion.div className="mb-2">
                     <Star
                       className="w-8 h-8"
-                      fill={selectedDate.toDateString() === day.toDateString() ? 'currentColor' : 'none'}
+                      fill={selectedDate.toDateString() === day.toDateString() ? "currentColor" : "none"}
                     />
                   </motion.div>
 
                   <div className="text-center">
-                    <div className="font-medium">{day.toLocaleDateString('es-ES', { weekday: 'short' }).toUpperCase()}</div>
+                    <div className="font-medium">{day.toLocaleDateString("es-ES", { weekday: "short" }).toUpperCase()}</div>
                     <div className="text-xl font-bold">{day.getDate()}</div>
                   </div>
                 </motion.div>
@@ -115,6 +127,7 @@ export default function WeeklyCalendar() {
 
         <motion.button
           onClick={nextWeek}
+          disabled={weekDays[6].getMonth() !== today.getMonth()} // Evita ir más allá del mes
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           className="p-2 rounded-full bg-[#E67E22]/20 text-[#E67E22] hover:bg-[#E67E22]/30"
