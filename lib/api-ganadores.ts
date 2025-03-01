@@ -1,6 +1,7 @@
 import type { WinnersApiResponse } from "@/types/winners";
 import { fetchFromApi } from "./api";
 import { fallbackWinners } from "./fallback-data";
+import { API_BASE_URL } from "@/lib/config";
 
 export async function fetchWinners(): Promise<WinnersApiResponse> {
   try {
@@ -31,7 +32,7 @@ export async function fetchWinners(): Promise<WinnersApiResponse> {
           tipo: tipoNormalizado, // ✅ Ahora siempre es minúscula y sin espacios
           premio_titulo: winner.premio_titulo || "Premio Desconocido",
           premio_imagen: winner.premio_imagen
-            ? (winner.premio_imagen.includes("localhost:8080") ? winner.premio_imagen : `http://localhost:8080/${winner.premio_imagen.replace(/^\/+/, '')}`)
+            ? (winner.premio_imagen.includes("localhost:8080") ? winner.premio_imagen : `${API_BASE_URL}/${winner.premio_imagen.replace(/^\/+/, '')}`)
             : "/placeholder.svg",
           es_ganador: winner.es_ganador,
         };

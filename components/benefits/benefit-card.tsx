@@ -1,4 +1,5 @@
 import FlipCard from "../ui/flip-card";
+import { API_BASE_URL } from "@/lib/config";
 
 interface BenefitCardProps {
   titulo: string;
@@ -15,7 +16,7 @@ export default function BenefitCard({ titulo, descripcion, sede, dias, imagen }:
         <FlipCard 
           title={titulo} 
           description={`${descripcion}\n${sede}\n${dias}`} 
-          imageUrl={imagen ? `http://localhost:8080/${imagen}` : "/default-image.jpg"} 
+          imageUrl={imagen ? `${API_BASE_URL}${imagen}` : "/default-image.jpg"}
           size="small" 
         />
       </div>

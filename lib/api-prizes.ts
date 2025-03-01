@@ -1,6 +1,7 @@
 import { fetchFromApi } from "./api";
 import { fallbackRewards } from "./fallback-data";
 import type { Reward } from "@/types/rewards";
+import { API_BASE_URL } from "@/lib/config";
 
 export async function fetchDriverRewards(): Promise<Reward[]> {
   try {
@@ -21,7 +22,7 @@ export async function fetchDriverRewards(): Promise<Reward[]> {
         id: reward.id,
         titulo: reward.titulo,  // 👈 Ahora usamos `titulo`
         dia: reward.dia,      // 👈 Ahora usamos `dias`
-        imagen: reward.imagen ? `http://localhost:8080/${reward.imagen}` : "http://localhost:8080/default.jpg",
+        imagen: reward.imagen ? `${API_BASE_URL}/${reward.imagen}` : `${API_BASE_URL}/default.jpg`,
         descripcion: reward.descripcion, // 👈 Agregamos `descripcion`
         tipo: reward.tipo,
       }));
@@ -31,7 +32,7 @@ export async function fetchDriverRewards(): Promise<Reward[]> {
       id: reward.id,
       titulo: reward.titulo,
       dia: reward.dia,
-      imagen: reward.imagen ? `http://localhost:8080/${reward.imagen}` : "http://localhost:8080/default.jpg",
+      imagen: reward.imagen ? `${API_BASE_URL}/${reward.imagen}` : `${API_BASE_URL}/default.jpg`,
       descripcion: reward.descripcion, // 👈 Agregamos `descripcion`
       tipo: reward.tipo,
     }));
@@ -57,7 +58,7 @@ export async function fetchPassengerRewards(): Promise<Reward[]> {
         id: reward.id,
         titulo: reward.titulo,
         dia: reward.dia,
-        imagen: reward.imagen ? `http://localhost:8080/${reward.imagen}` : "http://localhost:8080/default.jpg",
+        imagen: reward.imagen ? `${API_BASE_URL}/${reward.imagen}` : `${API_BASE_URL}/default.jpg`,
         descripcion: reward.descripcion, // 👈 Agregamos `descripcion`
         tipo: reward.tipo,
       }));
@@ -67,7 +68,7 @@ export async function fetchPassengerRewards(): Promise<Reward[]> {
       id: reward.id,
       titulo: reward.titulo,
       dia: reward.dia,
-      imagen: reward.imagen ? `http://localhost:8080/${reward.imagen}` : "http://localhost:8080/default.jpg",
+      imagen: reward.imagen ? `${API_BASE_URL}/${reward.imagen}` : `${API_BASE_URL}/default.jpg`,
       descripcion: reward.descripcion, // 👈 Agregamos `descripcion`
       tipo: reward.tipo,
     }));

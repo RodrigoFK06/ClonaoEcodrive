@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
+import { API_BASE_URL } from "@/lib/config";
 
 export async function GET() {
   try {
     console.log("📡 Llamando a la API de premios en CodeIgniter...");
 
-    const res = await fetch("http://localhost:8080/admin/premios", {
+    const res = await fetch(`${API_BASE_URL}/admin/premios`, {
       cache: "no-store",
       headers: {
         "Cache-Control": "no-cache, no-store, must-revalidate",
