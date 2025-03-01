@@ -32,7 +32,7 @@ export async function fetchWinners(): Promise<WinnersApiResponse> {
           tipo: tipoNormalizado, // ✅ Ahora siempre es minúscula y sin espacios
           premio_titulo: winner.premio_titulo || "Premio Desconocido",
           premio_imagen: winner.premio_imagen
-            ? (winner.premio_imagen.includes("localhost:8080") ? winner.premio_imagen : `${API_BASE_URL}/${winner.premio_imagen.replace(/^\/+/, '')}`)
+            ? (winner.premio_imagen.includes("https://mediumaquamarine-goat-867388.hostingersite.com") ? winner.premio_imagen : `${API_BASE_URL}/${winner.premio_imagen.replace(/^\/+/, '')}`)
             : "/placeholder.svg",
           es_ganador: winner.es_ganador,
         };
