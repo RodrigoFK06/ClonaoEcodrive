@@ -27,7 +27,7 @@ export function HomeHeader() {
             <span className="text-xl font-bold text-[#E67E22]"></span>
           </Link>
         </nav>
-        <div className="container mx-auto px-4 absolute left-10 h-[calc(130vh-80px)] flex flex-col justify-center">
+        <div className="container mx-auto px-4 h-[calc(130vh-80px)] flex flex-col justify-center">
           {/* Aplica font-black aquí */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}

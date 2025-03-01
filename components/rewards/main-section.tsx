@@ -60,7 +60,7 @@ export default function MainSection() {
       <FadeIn>
         <div className="absolute inset-0 container mx-auto flex flex-col items-center justify-center px-4">
           <motion.h1
-            className="text-5xl md:text-6xl font-black text-white mb-6 text-center"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 text-center break-words whitespace-normal"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
