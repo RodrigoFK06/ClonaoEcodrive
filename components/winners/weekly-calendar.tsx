@@ -30,8 +30,11 @@ export default function WeeklyCalendar({ onDateSelect }: { onDateSelect: (date: 
     onDateSelect(formatDate(today)); // Enviar la fecha inicial al WinnersGrid
   }, []);
 
-  const formatDate = (date: Date) => {
-    return date.toISOString().split("T")[0]; // Formato YYYY-MM-DD
+  const formatDate = (date: Date): string => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Meses empiezan en 0
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   };
 
   const getWeekDays = (start: Date): Date[] => {
