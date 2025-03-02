@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { FadeIn } from "../animations/fade-in"
-import TypingAnimation from "../ui/typing-animation"
-import { useEffect, useState } from "react"
-import type { MainPrize } from "@/types/main-prize"
-import { fetchMainPrize } from "@/lib/api-main-prize"
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { FadeIn } from "../animations/fade-in";
+import TypingAnimation from "../ui/typing-animation";
+import { useEffect, useState } from "react";
+import type { MainPrize } from "@/types/main-prize";
+import { fetchMainPrize } from "@/lib/api-main-prize";
 
 export default function MainPrize() {
   const [mainPrize, setMainPrize] = useState<MainPrize>({
@@ -14,27 +14,27 @@ export default function MainPrize() {
     subtitle: "2 Viajes a Malabrigo 3D/2N\n(2 personas todo pagado)",
     note: "Nota: La entrega del premio será para conductor y pasajero",
     date: "Fecha: 30 de Marzo",
-    imageUrl: "/Portada Premios.svg",
-  })
-  const [isLoading, setIsLoading] = useState(true)
+    imageUrl: "/placeholder.svg",
+  });
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadMainPrize = async () => {
       try {
-        setIsLoading(true)
-        const response = await fetchMainPrize()
+        setIsLoading(true);
+        const response = await fetchMainPrize();
         if (!response.error) {
-          setMainPrize(response.data)
+          setMainPrize(response.data);
         }
       } catch (e) {
-        console.error("Error loading main prize:", e)
+        console.error("❌ Error loading main prize:", e);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
+    };
 
-    loadMainPrize()
-  }, [])
+    loadMainPrize();
+  }, []);
 
   return (
     <section className="relative min-h-screen">
@@ -46,7 +46,7 @@ export default function MainPrize() {
       >
         <Image
           src={mainPrize.imageUrl || "/placeholder.svg"}
-          alt="Vista de Malabrigo"
+          alt="Vista del Gran Premio"
           fill
           className="object-cover"
           priority
@@ -87,6 +87,5 @@ export default function MainPrize() {
         </div>
       </FadeIn>
     </section>
-  )
+  );
 }
-
