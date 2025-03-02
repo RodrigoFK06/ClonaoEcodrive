@@ -6,6 +6,7 @@ export async function GET() {
     console.log("📡 Llamando a la API de multimedia en CodeIgniter...");
 
     const res = await fetch(`${API_BASE_URL}/admin/multimedia`, {
+      cache: "no-store",
       headers: { "Accept": "application/json" }, // 👈 Clave para obtener JSON
     });
 

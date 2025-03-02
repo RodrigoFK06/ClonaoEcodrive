@@ -30,7 +30,7 @@ const TypingAnimation = ({ text }: { text: string }) => {
     <motion.div
       initial={{ width: 0 }}
       animate={controls}
-      className="overflow-hidden whitespace-nowrap text-white"
+      className="overflow-show whitespace-nowrap text-white"
     >
       {text}
     </motion.div>

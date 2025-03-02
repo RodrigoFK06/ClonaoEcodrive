@@ -1,6 +1,7 @@
 export interface MainPrize {
   title: string
   subtitle: string
+  detail: string
   note: string
   date: string
   imageUrl: string

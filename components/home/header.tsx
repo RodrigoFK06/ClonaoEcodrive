@@ -33,7 +33,7 @@ export function HomeHeader() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight text-left" // Cambiado a font-black
+            className="text-4xl md:text-7xl font-black text-white mb-6 leading-tight text-left ml-5" // Cambiado a font-black
           >
             HAZ DE CADA VIAJE UNA <br /> 
             <span className="text-[#E67E22]"> OPORTUNIDAD</span>
@@ -47,7 +47,7 @@ export function HomeHeader() {
             <Link
               href="#"
               className="text-xl font-black bg-[#E67E22] text-black/90 px-12 py-3 rounded-full inline-block
-                hover:bg-[#E67E22]/90 transition-colors hover:shadow-lg hover:shadow-[#E67E22]/20"
+                hover:bg-[#E67E22]/90 transition-colors hover:shadow-lg hover:shadow-[#E67E22]/20 ml-5"
             >
               Descarga la app
             </Link>

@@ -32,8 +32,8 @@ export default function UniversalHeader() {
   }, [isMenuOpen]);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 py-6 px-4">
-      <div className="container mx-auto flex justify-between items-center">
+    <header className="absolute top-0 left-0 right-0 z-50 py-6 px-6 sm:px-8 md:px-4 bg-transparent">
+      <div className="w-full flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 z-50">
           <Image src="/Logo.png" alt="EcoDrive+" width={200} height={200} className="rounded" />
@@ -46,9 +46,8 @@ export default function UniversalHeader() {
             <Link
               key={link.href}
               href={link.href}
-              className={`transition-colors font-medium ${
-                pathname === link.href ? "text-[#E67E22]" : "text-white"
-              } hover:text-[#E67E22]`}
+              className={`transition-colors font-medium ${pathname === link.href ? "text-[#E67E22]" : "text-white"
+                } hover:text-[#E67E22]`}
             >
               {link.label}
             </Link>

@@ -45,7 +45,7 @@ export default function BenefitsGrid({ benefits, isLoading, error }: BenefitsGri
         transition={{ duration: 0.8 }}
         className="text-center mb-16"
       >
-        <h2 className="text-5xl font-bold text-[#E67E22] tracking-wider">¡BENEFICIOS PARA TODOS!</h2>
+        <h2 className="text-5xl font-black text-[#E67E22] tracking-wider">¡BENEFICIOS PARA TODOS!</h2>
       </motion.div>
 
       <div className="grid md:grid-cols-2 gap-12 items-center justify-center">

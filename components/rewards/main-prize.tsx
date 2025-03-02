@@ -11,7 +11,8 @@ import { fetchMainPrize } from "@/lib/api-main-prize";
 export default function MainPrize() {
   const [mainPrize, setMainPrize] = useState<MainPrize>({
     title: "¡GRAN PREMIO DEL MES!",
-    subtitle: "2 Viajes a Malabrigo 3D/2N\n(2 personas todo pagado)",
+    subtitle: "2 Viajes a Malabrigo 3D/2N",
+    detail: "(2 personas todo pagado)",
     note: "Nota: La entrega del premio será para conductor y pasajero",
     date: "Fecha: 30 de Marzo",
     imageUrl: "/placeholder.svg",
