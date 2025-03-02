@@ -81,7 +81,7 @@ export default function WeeklyCalendar({ onDateSelect }: { onDateSelect: (date: 
       <div className="flex justify-between items-center mb-6">
         <motion.button
           onClick={prevWeek}
-          disabled={weekDays[0].getDate() <= 1} // Evita ir antes del mes
+          disabled={weekDays[0].getDate() <= 1}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           className="p-2 rounded-full bg-[#E67E22]/20 text-[#E67E22] hover:bg-[#E67E22]/30"
@@ -89,45 +89,50 @@ export default function WeeklyCalendar({ onDateSelect }: { onDateSelect: (date: 
           <ChevronLeft className="w-6 h-6" />
         </motion.button>
 
-        <LayoutGroup>
-          <div className="flex gap-2 overflow-hidden w-full justify-center">
-            <AnimatePresence mode="popLayout">
-              {weekDays.map((day) => (
-                <motion.div
-                  key={day.toISOString()}
-                  className={`flex flex-col items-center p-4 rounded-lg cursor-pointer transition-all
-                    ${selectedDate.toDateString() === day.toDateString()
-                      ? 'bg-[#E67E22] text-white shadow-lg scale-105'
-                      : 'hover:bg-[#FDEBD0]'}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                  onClick={() => selectDate(day)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  layout
-                >
-                  <motion.div className="mb-2">
-                    <Star
-                      className="w-8 h-8"
-                      fill={selectedDate.toDateString() === day.toDateString() ? "currentColor" : "none"}
-                    />
-                  </motion.div>
+        {/* 📌 Agregar overflow y flex para mejorar responsive */}
+        <div className="w-full overflow-x-auto px-2">
+          <div className="flex gap-2 justify-center min-w-max overflow-hidden">
+            <LayoutGroup>
+              <AnimatePresence mode="popLayout">
+                {weekDays.map((day) => (
+                  <motion.div
+                    key={day.toISOString()}
+                    className={`flex flex-col items-center p-3 md:p-4 rounded-lg cursor-pointer min-w-[50px] md:min-w-[80px] transition-all
+                  ${selectedDate.toDateString() === day.toDateString()
+                        ? "bg-[#E67E22] text-white shadow-lg scale-105"
+                        : "hover:bg-[#FDEBD0]"}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    onClick={() => selectDate(day)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    layout
+                  >
+                    <motion.div className="mb-2">
+                      <Star
+                        className="w-6 h-6 md:w-8 md:h-8"
+                        fill={selectedDate.toDateString() === day.toDateString() ? "currentColor" : "none"}
+                      />
+                    </motion.div>
 
-                  <div className="text-center">
-                    <div className="font-medium">{day.toLocaleDateString("es-ES", { weekday: "short" }).toUpperCase()}</div>
-                    <div className="text-xl font-bold">{day.getDate()}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
+                    <div className="text-center text-sm md:text-base">
+                      <div className="font-medium">
+                        {day.toLocaleDateString("es-ES", { weekday: "short" }).toUpperCase()}
+                      </div>
+                      <div className="text-lg font-bold">{day.getDate()}</div>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </LayoutGroup>
           </div>
-        </LayoutGroup>
+        </div>
 
         <motion.button
           onClick={nextWeek}
-          disabled={weekDays[6].getMonth() !== today.getMonth()} // Evita ir más allá del mes
+          disabled={weekDays[6].getMonth() !== today.getMonth()}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           className="p-2 rounded-full bg-[#E67E22]/20 text-[#E67E22] hover:bg-[#E67E22]/30"
@@ -136,5 +141,6 @@ export default function WeeklyCalendar({ onDateSelect }: { onDateSelect: (date: 
         </motion.button>
       </div>
     </div>
+
   );
 }
