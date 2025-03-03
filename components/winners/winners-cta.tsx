@@ -6,6 +6,28 @@ import { Star } from "lucide-react"
 export default function WinnersCTA() {
   return (
     <motion.div
+  
+    >
+      
+      <motion.button
+
+      >
+
+
+      </motion.button>
+    </motion.div>
+  )
+}
+
+/*
+"use client"
+
+import { motion } from "framer-motion"
+import { Star } from "lucide-react"
+
+export default function WinnersCTA() {
+  return (
+    <motion.div
       className="bg-[#E67E22] rounded-full flex items-center justify-between py-3 px-6"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -24,3 +46,4 @@ export default function WinnersCTA() {
   )
 }
 
+*/

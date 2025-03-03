@@ -6,6 +6,20 @@ import { Star } from "lucide-react"
 export default function BenefitsCTA() {
   return (
     <section className="py-8 container mx-auto px-4">
+      
+    </section>
+  )
+}
+
+/*
+"use client"
+
+import { motion } from "framer-motion"
+import { Star } from "lucide-react"
+
+export default function BenefitsCTA() {
+  return (
+    <section className="py-8 container mx-auto px-4">
       <motion.div
         className="bg-[#E67E22] rounded-2xl flex items-center justify-between py-4 px-8"
         initial={{ opacity: 0, y: 20 }}
@@ -26,3 +40,4 @@ export default function BenefitsCTA() {
   )
 }
 
+*/
