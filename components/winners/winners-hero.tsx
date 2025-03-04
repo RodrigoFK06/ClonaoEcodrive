@@ -1,13 +1,37 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import Image from "next/image"
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function WinnersHero() {
+  const [weekRange, setWeekRange] = useState("");
+
+  useEffect(() => {
+    const today = new Date("2024-03-20");
+    
+    // Encuentra el lunes de la semana actual
+    const dayOfWeek = today.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+    const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek; // Si es domingo, retrocede 6 días
+    const monday = new Date(today);
+    monday.setDate(today.getDate() + diffToMonday);
+
+    // Encuentra el domingo de la misma semana
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+
+    // Formatea las fechas en "DD de Mes"
+    const formatDate = (date: Date) => {
+      return date.getDate() + " de " + date.toLocaleString("es-ES", { month: "long" });
+    };
+
+    setWeekRange(`Semana: ${formatDate(monday)} - ${formatDate(sunday)}`);
+  }, []);
+
   return (
     <section className="relative h-screen">
       <Image
-        src="\Portada Ganadores.png"
+        src="/Portada Ganadores.png"
         alt="Familia feliz celebrando"
         fill
         className="object-cover"
@@ -44,16 +68,15 @@ export default function WinnersHero() {
           ¡Recuerda que tienes una semana para reclamarlos!
         </motion.p>
         <motion.div
-          className="absolute bottom-8 w-full flex justify-between items-center text-white/80 text-sm px-4"
+          className="absolute bottom-8 w-full flex flex-col md:flex-row justify-between items-center text-white/80 text-sm px-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <p>Nota: La entrega de los premios se harán conforme a los Términos y condiciones de EcoDrive+</p>
-          <p>Semana: 03 de Marzo - 09 de Marzo</p>
+          <p>{weekRange}</p>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
-
